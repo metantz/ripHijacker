@@ -24,7 +24,7 @@ sudo vim  /etc/sysctl.d/10-ptrace.conf
 
 ..and setting.. 
 
-kernel.yama.ptrace_scope = 1
+kernel.yama.ptrace_scope = 0
 
 ..after that we must load the new settings with:
 
