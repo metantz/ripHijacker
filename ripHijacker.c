@@ -155,9 +155,11 @@ int main(int argc, char **argv)
 				
 				registers.rip = wanted;
 				ptrace(PTRACE_SETREGS, pid, NULL, &registers);
+				free(chunk);
       			}
 			else
 			{
+				free(chunk);
 				printf(" %s's address not found.\n", envVar);
 				printf(" If %s will restart we may retry to find %s address!\nDo you want to try to kill [%d] process? (Y/N)\n", name, envVar, pid);
 				if(getchar() == 'Y')
