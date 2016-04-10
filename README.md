@@ -1,15 +1,15 @@
 # ripHijacker
                        
-Usage: ./ripHijacker -p <pid> [-e <environment_variable> -n <target_program name>]
+Usage: ./ripHijacker -p target_pid [-e environment_variable -n target_program_name]
 
 -------------------------------------------------------------------------------------------------------------------------
 
-./ripHijacker -p <target_pid>
+./ripHijacker -p target_pid
 
 ..allow you to inject an hardcoded "/bin/sh" shellcode into the stack of the target and to overwrite its rip register with the address pointed by its rsp register.
 -------------------------------------------------------------------------------------------------------------------------
 
-./ripHijacker -p <target_pid> -e <environment_variable> -n <target program name> 
+./ripHijacker -p target_pid -e environment_variable -n target_program_name 
 
 ..allow you to overwrite the register rip of the target with the address of the environment variable (specified with -e option) in the target's stack.
 -------------------------------------------------------------------------------------------------------------------------
