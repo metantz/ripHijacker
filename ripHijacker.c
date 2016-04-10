@@ -121,7 +121,7 @@ int main(int argc, char **argv)
 		memcpy(chunk, envAddr, size); 
 		envAddr += (strlen(argv[0]) - strlen(name))*2;
 		
-    		printf("\n~~~~~~ If ASLR is disabled, %s variable will be at %p ~~~~~~~\n", envVar, envAddr);
+    		printf("\n~~~~~~ If ASLR is disabled, variable %s will be at %p ~~~~~~~\n", envVar, envAddr);
 		
 		pointed = ptrace(PTRACE_PEEKTEXT, pid, envAddr, NULL);
 
