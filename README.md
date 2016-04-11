@@ -1,15 +1,20 @@
 # ripHijacker
                        
-Usage: ./ripHijacker -p target_pid [-e environment_variable -n target_program_name]
-
+ Usage: ./ripHijacker -p target_pid  [-z 0|1 [-e environment_variable -n target_program_name]]
+ 
 -------------------------------------------------------------------------------------------------------------------------
 
 ./ripHijacker -p target_pid
 
+..allows you to inject an hardcoded "/bin/sh" shellcode into the executable segment /lib/x86_64-linux-gnu/ld-2.19.so of the target and to overwrite its rip register with the address of that segment.
+-------------------------------------------------------------------------------------------------------------------------
+
+./ripHijacker -p target_pid -z 1
+
 ..allows you to inject an hardcoded "/bin/sh" shellcode into the stack of the target and to overwrite its rip register with the address pointed by its rsp register.
 -------------------------------------------------------------------------------------------------------------------------
 
-./ripHijacker -p target_pid -e environment_variable -n target_program_name 
+./ripHijacker -p target_pid -z 1 -e environment_variable -n target_program_name 
 
 ..allows you to overwrite the register rip of the target with the address of the environment variable (specified with -e option) in the target's stack.
 -------------------------------------------------------------------------------------------------------------------------
@@ -30,12 +35,12 @@ kernel.yama.ptrace_scope = 0
 
 sudo sysctl --system -a -p | grep  yama
 
-Obviously the target program must be compiled with the "-z execstack" option.
+Obviously, to use '-z 1' option the target program must be compiled with the "-z execstack" option.
 
 Acknowledgment:
 
   Vorrei ringraziare Fabio Blacklight ed il suo vecchio ma geniale programma meminj.c che mi ha permesso di venire a 
-  conoscenza dell'utilità di ptrace.
+  conoscenza dell'utilità di ptrace ed anche Crossbower che mi ha dato l'idea su come effettuare l'attacco ld_inj
 
 
 
