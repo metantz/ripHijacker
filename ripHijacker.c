@@ -220,7 +220,7 @@ int main(int argc, char **argv)
 
 	void check_opt(pid_t pid, int options[])
 	{
-		if(!pid || options[1] != options[2] || !options[0] && (options[1] || options[2]))
+		if(!pid || options[1] != options[2] || (!options[0] && (options[1] || options[2])))
 		{
 			usage();
 		}
