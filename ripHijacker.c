@@ -184,8 +184,9 @@ void rip_to_env(pid_t pid, char* argv0, struct user_regs_struct registers, char 
 			{
 					printf(" Do you want to try another attack?\n");
 					printf(" [1] ld_inj\n [2] stack_inj\n [else] exit\n");
-
-					switch(getchar())
+					getchar();
+					char p = getchar();
+					switch(p)
 					{
 						case '1': ld_inj(pid, registers);
 								  break;
@@ -195,6 +196,7 @@ void rip_to_env(pid_t pid, char* argv0, struct user_regs_struct registers, char 
 								 exit(0);
 								 break;
 					}
+					
 					
 			}
 		}
