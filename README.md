@@ -35,7 +35,7 @@ kernel.yama.ptrace_scope = 0
 
 sudo sysctl --system -a -p | grep  yama
 
-Obviously, to use '-z 1' option the target program must be compiled with the "-z execstack" option.
+Obviously, to use '-z 1' option the target program must be compiled with the "-z execstack" option and to use -e and -n options the environment variable must be loaded before the program target execution.
 
 Acknowledgment:
 
