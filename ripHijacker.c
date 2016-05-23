@@ -235,25 +235,24 @@ int main(int argc, char **argv)
 	{
 		switch(c) 
    		{
-    		case 'p':
-        		pid = atoi(optarg);
-        		break;
-        	case 'z':
-        		options[0] = atoi(optarg);
-       			break;
-    		case 'e':
-    			options[1] = 1;
-        		envVar = strdup(optarg);
-        		
-        		break;
-    		case 'n':
-        		name = strdup(optarg);
-        		options[2] = 1;
-        		break;
-       		default:
+    			case 'p':
+        			pid = atoi(optarg);
+        			break;
+        		case 'z':
+	        		options[0] = atoi(optarg);
+       				break;
+    			case 'e':
+	    			options[1] = 1;
+        			envVar = strdup(optarg);
+        			break;
+    			case 'n':
+        			name = strdup(optarg);
+        			options[2] = 1;
+        			break;
+       			default:
 				usage();
-    			break;
-    	}	
+    				break;
+    		}	
 	}
 
 	check_opt(pid, options);
