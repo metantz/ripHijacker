@@ -63,7 +63,7 @@ $sudo sysctl --system -a -p | grep  yama
 
 Obviously, to use '-z 1' option the target program must be compiled with the "-z execstack" option and to use -e and -n options the environment variable must be loaded before the program target execution.
 
-##AKNOWLEDGEMENT:
+##ACKNOWLEDGEMENT:
 
 Vorrei ringraziare Fabio Blacklight ed il suo vecchio ma geniale programma meminj.c che mi ha permesso di venire a 
 conoscenza dell'utilità di ptrace ed anche Crossbower che mi ha dato l'idea su come effettuare l'attacco ld_inj
