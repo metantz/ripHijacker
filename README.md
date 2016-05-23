@@ -8,7 +8,7 @@
 
 ##SYNOPSIS: 
 ```bash
-$./ripHijacker [OPTIONS] -p target_pid  [-z 0|1 [-e environment_variable -n target_program_name]]
+$./ripHijacker [OPTIONS]
 ```
 
 ##OPTIONS:
