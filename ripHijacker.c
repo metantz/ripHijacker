@@ -22,7 +22,7 @@ void print()
 	printf("| |  | | |_) | |  | | | | (_| | (__|   <  __/ |   \n");
 	printf("|_|  |_| .__/|_|  |_|_| |\\__,_|\\___|_|\\_\\___|_|   \n");
 	printf("       | |           _/ |                         \n");
-	printf("       |_|  ~antz~  |__/                          \n\n");
+	printf("       |_| ~metantz~|__/                          \n\n");
 }
 
 void success(pid_t pid, struct user_regs_struct registers)
