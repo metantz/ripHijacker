@@ -68,6 +68,7 @@ Obviously, to use '-z 1' option the target program must be compiled with the "-z
 Vorrei ringraziare Fabio Blacklight ed il suo vecchio ma geniale programma meminj.c che mi ha permesso di venire a 
 conoscenza dell'utilità di ptrace ed anche Crossbower che mi ha dato l'idea su come effettuare l'attacco ld_inj
 
-
+## Video:
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Pi39DfYiMFQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
