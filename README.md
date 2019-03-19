@@ -69,6 +69,6 @@ Vorrei ringraziare Fabio Blacklight ed il suo vecchio ma geniale programma memin
 conoscenza dell'utilità di ptrace ed anche Crossbower che mi ha dato l'idea su come effettuare l'attacco ld_inj
 
 ## Video:
-[![Video image](https://img.youtube.com/vi/Pi39DfYiMFQ/0.jpg)](https://www.youtube.com/watch?v=Pi39DfYiMFQ)
+[![Video image](https://img.youtube.com/vi/Pi39DfYiMFQ/1.jpg)](https://www.youtube.com/watch?v=Pi39DfYiMFQ)
 
 
