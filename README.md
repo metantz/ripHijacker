@@ -1,17 +1,17 @@
 # ripHijacker
 
-#DESCRIPTION:
+# DESCRIPTION:
 
 - It allows you to inject an hardcoded "/bin/sh" shellcode into the executable segment /lib/x86_64-linux-gnu/ld-2.19.so of the target process and to overwrite its $rip register with the address of that segment.
 - It allows you to inject an hardcoded "/bin/sh" shellcode into the stack of the target process and to overwrite its $rip register with the address pointed by its $rsp register.                       
 - It allows you to overwrite the $rip register of the target process with the address of an environment variable located in the target's stack.
 
-##SYNOPSIS: 
+## SYNOPSIS: 
 ```bash
 $./ripHijacker [OPTIONS]
 ```
 
-##OPTIONS:
+## OPTIONS:
 ```
 -p <target_pid>:        pid of the target process.
 -z <0|1>:               if enabled (1), it overwrites the $rip register with an address of the target's stack.
@@ -20,7 +20,7 @@ $./ripHijacker [OPTIONS]
 ```
 (-e and -n options must be used together and only if -z is enabled)
 
-##EXAMPLES:
+## EXAMPLES:
 
 ```bash
  $./ripHijacker -p 6666
@@ -42,7 +42,7 @@ Now we can use -e and -n options:
  $./ripHijacker -p 6666 -z 1 -e A -n target_name
 ```
 
-##NOTES:
+## NOTES:
 ripHijacker uses ptrace. 
 ```
 "A PTRACE scope of "0" is the more permissive mode.  A scope of "1" limits
@@ -63,7 +63,7 @@ $sudo sysctl --system -a -p | grep  yama
 
 Obviously, to use '-z 1' option the target program must be compiled with the "-z execstack" option and to use -e and -n options the environment variable must be loaded before the program target execution.
 
-##ACKNOWLEDGEMENT:
+## ACKNOWLEDGEMENT:
 
 Vorrei ringraziare Fabio Blacklight ed il suo vecchio ma geniale programma meminj.c che mi ha permesso di venire a 
 conoscenza dell'utilità di ptrace ed anche Crossbower che mi ha dato l'idea su come effettuare l'attacco ld_inj
